@@ -18,9 +18,15 @@ public class ResultPrinter {
             System.out.println(
                     "Layout: " + elementsCombination
                             + " Amount of layout utilization: [" + elementsForBarMap.get(elementsCombination) + "]"
+
                             + " Utilized length: " + elementsCombination.stream().reduce(0, Integer::sum)
                             + "/"
                             + reBarLength
+
+                            + " Unused length: " + (reBarLength - elementsCombination.stream().reduce(0, Integer::sum))
+                            + "/"
+                            + reBarLength
+
                             + "\n"
             );
         }
@@ -38,9 +44,15 @@ public class ResultPrinter {
                 writer.write(
                         "Layout: " + elementsCombination
                                 + " Amount of layout utilization: [" + elementsForBarMap.get(elementsCombination) + "]"
+
                                 + " Utilized length: " + elementsCombination.stream().reduce(0, Integer::sum)
                                 + "/"
                                 + reBarLength
+
+                                + " Unused length: " + (reBarLength - elementsCombination.stream().reduce(0, Integer::sum))
+                                + "/"
+                                + reBarLength
+
                                 + "\n\n"
                 );
             }
