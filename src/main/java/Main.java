@@ -1,4 +1,5 @@
 import java.io.IOException;
+import java.util.List;
 
 public class Main {
 
@@ -13,65 +14,13 @@ public class Main {
         }
 
         ReBarCalculator reBarCalculator = new ReBarCalculator();
-        reBarCalculator.calculateReBars(reBarData.getReBarLength(), reBarData.getElementDataList());
+        List<List<Integer>> elementsForBar = reBarCalculator.calculateReBars(reBarData.getReBarLength(), reBarData.getElementDataList());
+
+        ResultPrinter resultPrinter = new ResultPrinter();
+        if (args.length == 2) {
+            resultPrinter.printResultToFile(reBarData.getReBarLength(), elementsForBar);
+        } else {
+            resultPrinter.printResultToTerminal(reBarData.getReBarLength(), elementsForBar);
+        }
     }
 }
-
-
-
-
-/*
-11700
-3
-3380 84
-4365 26
-3400 36
-*/
-
-
-/*
-11700
-3
-3380 1
-4365 1
-3400 2
-*/
-
-
-/*
-45
-4
-30 1
-14 1
-16 1
-9 1
-*/
-
-
-/*
-11700
-4
-5000 23
-4875 12
-6957 11
-1112 7
-*/
-
-
-/*
-11
-2
-7 1
-2 1
-*/
-
-
-/*
-117
-4
-50 23
-48 12
-69 11
-11 7
-*/
-

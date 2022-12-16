@@ -4,7 +4,7 @@ import java.util.List;
 
 public class ReBarCalculator {
 
-    public void calculateReBars(int reBarLength, List<ElementData> elementDataList) {
+    public List<List<Integer>> calculateReBars(int reBarLength, List<ElementData> elementDataList) {
         List<Integer> elementsList = new ArrayList<>();
         elementDataList.forEach(elementData -> elementsList.addAll(Collections.nCopies(elementData.getAmount(), elementData.getLength())));
 
@@ -57,17 +57,6 @@ public class ReBarCalculator {
             elementsForBar.add(elementsFromCurrentHinge);
         }
 
-        int hingesAmount = elementsForBar.size();
-        System.out.println("\nRequired amount of re-bars: [" + hingesAmount + "]\n");
-
-        for (List<Integer> integers : elementsForBar) {
-            System.out.println(integers
-                    + "  Utilized length: "
-                    + integers.stream().reduce(0, Integer::sum)
-                    + "/"
-                    + reBarLength
-            );
-        }
-
+        return elementsForBar;
     }
 }
