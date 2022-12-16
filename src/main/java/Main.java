@@ -1,5 +1,6 @@
 import java.io.IOException;
 import java.util.List;
+import java.util.Map;
 
 public class Main {
 
@@ -14,13 +15,13 @@ public class Main {
         }
 
         ReBarCalculator reBarCalculator = new ReBarCalculator();
-        List<List<Integer>> elementsForBar = reBarCalculator.calculateReBars(reBarData.getReBarLength(), reBarData.getElementDataList());
+        Map<List<Integer>, Integer> elementsForBarMap = reBarCalculator.calculateReBars(reBarData.getReBarLength(), reBarData.getElementDataList());
 
         ResultPrinter resultPrinter = new ResultPrinter();
         if (args.length == 2) {
-            resultPrinter.printResultToFile(reBarData.getReBarLength(), elementsForBar);
+            resultPrinter.printResultToFile(reBarData.getReBarLength(), elementsForBarMap);
         } else {
-            resultPrinter.printResultToTerminal(reBarData.getReBarLength(), elementsForBar);
+            resultPrinter.printResultToTerminal(reBarData.getReBarLength(), elementsForBarMap);
         }
     }
 }

@@ -1,10 +1,8 @@
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
+import java.util.*;
 
 public class ReBarCalculator {
 
-    public List<List<Integer>> calculateReBars(int reBarLength, List<ElementData> elementDataList) {
+    public Map<List<Integer>, Integer> calculateReBars(int reBarLength, List<ElementData> elementDataList) {
         List<Integer> elementsList = new ArrayList<>();
         elementDataList.forEach(elementData -> elementsList.addAll(Collections.nCopies(elementData.getAmount(), elementData.getLength())));
 
@@ -57,6 +55,16 @@ public class ReBarCalculator {
             elementsForBar.add(elementsFromCurrentHinge);
         }
 
-        return elementsForBar;
+        Map<List<Integer>, Integer> elementsForBarMap = new HashMap<>();
+        elementsForBar.forEach(computedElementsList -> {
+                    elementsForBarMap.merge(
+                            computedElementsList,
+                            1,
+                            (oldVal, newVal) -> oldVal = oldVal + 1
+                    );
+                }
+        );
+
+        return elementsForBarMap;
     }
 }
