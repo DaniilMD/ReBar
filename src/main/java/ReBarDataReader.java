@@ -18,7 +18,7 @@ public class ReBarDataReader {
 
             List<ElementData> elementDataList = new ArrayList<>();
             for (int i = 0; i < typesOfFragments; i++) {
-                String[] split = reader.readLine().split(" ");
+                String[] split = reader.readLine().split("\t");
 
                 int length = Integer.parseInt(split[0]);
                 int n = Integer.parseInt(split[1]);
