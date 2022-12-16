@@ -10,7 +10,7 @@ public class ResultPrinter {
     public void printResultToTerminal(int reBarLength, Map<List<Integer>, Integer> elementsForBarMap) {
         Set<Map.Entry<List<Integer>, Integer>> entries = elementsForBarMap.entrySet();
 
-        int hingesAmount = entries.size();
+        int hingesAmount = entries.stream().map(Map.Entry::getValue).reduce(0, Integer::sum);
         System.out.println("Required amount of re-bars: [" + hingesAmount + "]\n");
 
         for (Map.Entry<List<Integer>, Integer> entry : entries) {
@@ -36,7 +36,7 @@ public class ResultPrinter {
         Set<Map.Entry<List<Integer>, Integer>> entries = elementsForBarMap.entrySet();
 
         try (BufferedWriter writer = new BufferedWriter(new FileWriter("src/main/resources/output.txt"))) {
-            int hingesAmount = entries.size();
+            int hingesAmount = entries.stream().map(Map.Entry::getValue).reduce(0, Integer::sum);
             writer.write("Required amount of re-bars: [" + hingesAmount + "]\n\n");
 
             for (Map.Entry<List<Integer>, Integer> entry : entries) {
