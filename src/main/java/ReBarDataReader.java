@@ -14,11 +14,12 @@ public class ReBarDataReader {
         try (BufferedReader reader = Files.newBufferedReader(Paths.get(pathToFile))) {
 
             int reBarLength = Integer.parseInt(reader.readLine());
-            int typesOfFragments = Integer.parseInt(reader.readLine());
 
             List<ElementData> elementDataList = new ArrayList<>();
-            for (int i = 0; i < typesOfFragments; i++) {
-                String[] split = reader.readLine().split("\t");
+
+            String line;
+            while ((line = reader.readLine()) != null && !line.equals("")) {
+                String[] split = line.split("\t");
 
                 int length = Integer.parseInt(split[0]);
                 int n = Integer.parseInt(split[1]);
